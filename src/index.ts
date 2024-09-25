@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import { AppContainer } from './config/container';
 import { appConfig } from './config/config';
 import { ServiceHandler } from './core/service.handler';
