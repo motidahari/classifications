@@ -1,4 +1,3 @@
-import dotenv from "dotenv";
 import { AppContainer } from './config/container';
 import { appConfig } from './config/config';
 import { ServiceHandler } from './core/service.handler';
@@ -30,6 +29,12 @@ apiGatewayHandler.app.get('/classifications', async (req, res) => {
   }
 });
 
-// prompt endpoint
+apiGatewayHandler.app.get('/occupations', async (req, res) => {
+  try {
+    const data = await appContainer.occupationService.getOccupations();
 
-
+    res.send(data);
+  } catch (error) {
+    console.log('error', error);
+  }
+});
