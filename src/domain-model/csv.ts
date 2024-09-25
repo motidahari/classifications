@@ -10,7 +10,6 @@ export class Csv {
 
   constructor(path: string) {
     this.path = path;
-    this.processCSV();
   }
 
   get path(): string {
@@ -69,7 +68,6 @@ export class Csv {
 
   private processRow(row: any): void {
     this.records.push(row);
-    // console.log('row', row);
 
     const expense = new Expense(
       row['id'],

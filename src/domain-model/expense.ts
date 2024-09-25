@@ -2,37 +2,41 @@ import { number } from 'joi';
 import { TimeUtil } from '../core/time.util';
 import { BusinessType } from '../enum/business.type.enum';
 import * as yaml from 'js-yaml';
+import { DocumentType } from '../enum/document.type.enum';
+import { PaymentType } from '../enum/payment.type.enum';
+import { Classification } from './classification';
 
 export class Expense {
   private _id: string;
   private _businessId: string;
-  private _documentType: string;
+  private _documentType: DocumentType;
   private _expenseStatus: string;
   private _expenseDate: string;
-  private _amountExcludeVat: string;
-  private _vat: string;
-  private _amount: string;
+  private _amountExcludeVat: number;
+  private _vat: number;
+  private _amount: number;
   private _expenseNumber: string;
   private _currency: string;
-  private _currencyRate: string;
-  private _paymentType: string;
+  private _currencyRate: number;
+  private _paymentType: PaymentType;
   private _active: string;
-  private _classificationType: string;
-  private _classificationIrs: string;
-  private _classificationTitle: string;
-  private _classificationAccountingKey: string;
-  private _classificationAccountingCode: string;
-  private _classificationIncome: string;
-  private _classificationVat: string;
-  private _classificationMixed: string;
-  private _businessCategory: string;
-  private _businessSubCategory: string;
+  // private _classificationType: string;
+  // private _classificationIrs: string;
+  // private _classificationTitle: string;
+  // private _classificationAccountingKey: string;
+  // private _classificationAccountingCode: string;
+  // private _classificationIncome: string;
+  // private _classificationVat: string;
+  // private _classificationMixed: string;
+  private _businessCategory: number;
+  private _businessSubCategory: number;
   private _businessType: BusinessType;
+  private _expenseClassification: Classification;
 
   constructor(
     id: string,
     businessId: string,
-    documentType: string,
+    documentType: DocumentType,
     expenseStatus: string,
     expenseDate: string,
     amountExcludeVat: string,
@@ -68,14 +72,27 @@ export class Expense {
     this.currencyRate = currencyRate;
     this.paymentType = paymentType;
     this.active = active;
-    this.classificationType = classificationType;
-    this.classificationIrs = classificationIrs;
-    this.classificationTitle = classificationTitle;
-    this.classificationAccountingKey = classificationAccountingKey;
-    this.classificationAccountingCode = classificationAccountingCode;
-    this.classificationIncome = classificationIncome;
-    this.classificationVat = classificationVat;
-    this.classificationMixed = classificationMixed;
+
+    this.expenseClassification = new Classification(
+      classificationAccountingKey,
+      classificationAccountingCode,
+      classificationTitle,
+      Number(classificationIrs),
+      Number(classificationIrs),
+      Number(classificationMixed),
+      Number(classificationVat),
+      Number(classificationIncome)
+    );
+    // this.classificationType = classificationType;
+    // this.classificationIrs = classificationIrs;
+    // this.classificationAccountingKey = classificationAccountingKey;
+    // this.classificationAccountingCode = classificationAccountingCode;
+
+    // this.classificationTitle = classificationTitle;
+    // this.classificationIncome = classificationIncome;
+    // this.classificationVat = classificationVat;
+    // this.classificationMixed = classificationMixed;
+
     this.businessCategory = businessCategory;
     this.businessSubCategory = businessSubCategory;
     this.businessType = businessType;
@@ -97,12 +114,12 @@ export class Expense {
     this._businessId = businessId;
   }
 
-  get documentType(): string {
+  get documentType(): DocumentType {
     return this._documentType;
   }
 
-  set documentType(documentType: string) {
-    this._documentType = documentType;
+  set documentType(documentType: DocumentType) {
+    this._documentType = Number(documentType);
   }
 
   get expenseStatus(): string {
@@ -121,28 +138,28 @@ export class Expense {
     this._expenseDate = expenseDate;
   }
 
-  get amountExcludeVat(): string {
+  get amountExcludeVat(): number {
     return this._amountExcludeVat;
   }
 
   set amountExcludeVat(amountExcludeVat: string) {
-    this._amountExcludeVat = amountExcludeVat;
+    this._amountExcludeVat = Number(amountExcludeVat);
   }
 
-  get vat(): string {
+  get vat(): number {
     return this._vat;
   }
 
   set vat(vat: string) {
-    this._vat = vat;
+    this._vat = Number(vat);
   }
 
-  get amount(): string {
+  get amount(): number {
     return this._amount;
   }
 
   set amount(amount: string) {
-    this._amount = amount;
+    this._amount = Number(amount);
   }
 
   get expenseNumber(): string {
@@ -161,20 +178,20 @@ export class Expense {
     this._currency = currency;
   }
 
-  get currencyRate(): string {
+  get currencyRate(): number {
     return this._currencyRate;
   }
 
   set currencyRate(currencyRate: string) {
-    this._currencyRate = currencyRate;
+    this._currencyRate = Number(currencyRate);
   }
 
-  get paymentType(): string {
+  get paymentType(): PaymentType {
     return this._paymentType;
   }
 
   set paymentType(paymentType: string) {
-    this._paymentType = paymentType;
+    this._paymentType = Number(paymentType);
   }
 
   get active(): string {
@@ -185,84 +202,84 @@ export class Expense {
     this._active = active;
   }
 
-  get classificationType(): string {
-    return this._classificationType;
-  }
+  // get classificationType(): string {
+  //   return this._classificationType;
+  // }
 
-  set classificationType(classificationType: string) {
-    this._classificationType = classificationType;
-  }
+  // set classificationType(classificationType: string) {
+  //   this._classificationType = classificationType;
+  // }
 
-  get classificationIrs(): string {
-    return this._classificationIrs;
-  }
+  // get classificationIrs(): string {
+  //   return this._classificationIrs;
+  // }
 
-  set classificationIrs(classificationIrs: string) {
-    this._classificationIrs = classificationIrs;
-  }
+  // set classificationIrs(classificationIrs: string) {
+  //   this._classificationIrs = classificationIrs;
+  // }
 
-  get classificationTitle(): string {
-    return this._classificationTitle;
-  }
+  // get classificationTitle(): string {
+  //   return this._classificationTitle;
+  // }
 
-  set classificationTitle(classificationTitle: string) {
-    this._classificationTitle = classificationTitle;
-  }
+  // set classificationTitle(classificationTitle: string) {
+  //   this._classificationTitle = classificationTitle;
+  // }
 
-  get classificationAccountingKey(): string {
-    return this._classificationAccountingKey;
-  }
+  // get classificationAccountingKey(): string {
+  //   return this._classificationAccountingKey;
+  // }
 
-  set classificationAccountingKey(classificationAccountingKey: string) {
-    this._classificationAccountingKey = classificationAccountingKey;
-  }
+  // set classificationAccountingKey(classificationAccountingKey: string) {
+  //   this._classificationAccountingKey = classificationAccountingKey;
+  // }
 
-  get classificationAccountingCode(): string {
-    return this._classificationAccountingCode;
-  }
+  // get classificationAccountingCode(): string {
+  //   return this._classificationAccountingCode;
+  // }
 
-  set classificationAccountingCode(classificationAccountingCode: string) {
-    this._classificationAccountingCode = classificationAccountingCode;
-  }
+  // set classificationAccountingCode(classificationAccountingCode: string) {
+  //   this._classificationAccountingCode = classificationAccountingCode;
+  // }
 
-  get classificationIncome(): string {
-    return this._classificationIncome;
-  }
+  // get classificationIncome(): string {
+  //   return this._classificationIncome;
+  // }
 
-  set classificationIncome(classificationIncome: string) {
-    this._classificationIncome = classificationIncome;
-  }
+  // set classificationIncome(classificationIncome: string) {
+  //   this._classificationIncome = classificationIncome;
+  // }
 
-  get classificationVat(): string {
-    return this._classificationVat;
-  }
+  // get classificationVat(): string {
+  //   return this._classificationVat;
+  // }
 
-  set classificationVat(classificationVat: string) {
-    this._classificationVat = classificationVat;
-  }
+  // set classificationVat(classificationVat: string) {
+  //   this._classificationVat = classificationVat;
+  // }
 
-  get classificationMixed(): string {
-    return this._classificationMixed;
-  }
+  // get classificationMixed(): string {
+  //   return this._classificationMixed;
+  // }
 
-  set classificationMixed(classificationMixed: string) {
-    this._classificationMixed = classificationMixed;
-  }
+  // set classificationMixed(classificationMixed: string) {
+  //   this._classificationMixed = classificationMixed;
+  // }
 
-  get businessSubCategory(): string {
+  get businessSubCategory(): number {
     return this._businessSubCategory;
   }
 
   set businessCategory(businessCategory: string) {
-    this._businessCategory = businessCategory;
+    this._businessCategory = Number(businessCategory);
   }
 
-  get businessCategory(): string {
+  get businessCategory(): number {
     return this._businessCategory;
   }
 
   set businessSubCategory(businessSubCategory: string) {
-    this._businessSubCategory = businessSubCategory;
+    this._businessSubCategory = Number(businessSubCategory);
   }
 
   get businessType(): BusinessType {
@@ -270,7 +287,15 @@ export class Expense {
   }
 
   set businessType(businessType: BusinessType) {
-    this._businessType = businessType;
+    this._businessType = Number(businessType);
+  }
+
+  get expenseClassification(): Classification {
+    return this._expenseClassification;
+  }
+
+  set expenseClassification(classification: Classification) {
+    this._expenseClassification = classification;
   }
 
   toJson() {
@@ -288,17 +313,18 @@ export class Expense {
       currencyRate: this.currencyRate,
       paymentType: this.paymentType,
       active: this.active,
-      classificationType: this.classificationType,
-      classificationIrs: this.classificationIrs,
-      classificationTitle: this.classificationTitle,
-      classificationAccountingKey: this.classificationAccountingKey,
-      classificationAccountingCode: this.classificationAccountingCode,
-      classificationIncome: this.classificationIncome,
-      classificationVat: this.classificationVat,
-      classificationMixed: this.classificationMixed,
+      // classificationType: this.classificationType,
+      // classificationIrs: this.classificationIrs,
+      // classificationTitle: this.classificationTitle,
+      // classificationAccountingKey: this.classificationAccountingKey,
+      // classificationAccountingCode: this.classificationAccountingCode,
+      // classificationIncome: this.classificationIncome,
+      // classificationVat: this.classificationVat,
+      // classificationMixed: this.classificationMixed,
       businessCategory: this.businessCategory,
       businessSubCategory: this.businessSubCategory,
-      businessType: this.businessType
+      businessType: this.businessType,
+      expenseClassification: this.expenseClassification
     };
   }
 
@@ -317,14 +343,14 @@ export class Expense {
       currencyRate: this.currencyRate,
       paymentType: this.paymentType,
       active: this.active,
-      classificationType: this.classificationType,
-      classificationIrs: this.classificationIrs,
-      classificationTitle: this.classificationTitle,
-      classificationAccountingKey: this.classificationAccountingKey,
-      classificationAccountingCode: this.classificationAccountingCode,
-      classificationIncome: this.classificationIncome,
-      classificationVat: this.classificationVat,
-      classificationMixed: this.classificationMixed,
+      // classificationType: this.classificationType,
+      // classificationIrs: this.classificationIrs,
+      // classificationTitle: this.classificationTitle,
+      // classificationAccountingKey: this.classificationAccountingKey,
+      // classificationAccountingCode: this.classificationAccountingCode,
+      // classificationIncome: this.classificationIncome,
+      // classificationVat: this.classificationVat,
+      // classificationMixed: this.classificationMixed,
       businessCategory: this.businessCategory,
       businessSubCategory: this.businessSubCategory,
       businessType: this.businessType
