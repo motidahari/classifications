@@ -11,7 +11,7 @@ apiGatewayHandler.app.get('/', async (req, res) => {
   try {
     const data = await appContainer.expensesService.getExpenses();
 
-    res.send(data[0]);
+    res.send(data);
   } catch (error) {
     console.log('error', error);
   }
