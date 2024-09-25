@@ -9,9 +9,10 @@ export class ExpensesService {
     this.csv = csv;
   }
 
-  public getExpenses() {
-    console.log('this.csv.listExpenses', this.csv.listExpenses);
+  public async getExpenses() {
+    await this.csv.processCSV();
+    console.log('this.csv.listExpenses', this.csv.listExpenses.length);
 
-    return {};
+    return this.csv.listExpenses;
   }
 }

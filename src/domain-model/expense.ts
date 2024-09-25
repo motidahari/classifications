@@ -1,5 +1,7 @@
 import { number } from 'joi';
 import { TimeUtil } from '../core/time.util';
+import { BusinessType } from '../enum/business.type.enum';
+import * as yaml from 'js-yaml';
 
 export class Expense {
   private _id: string;
@@ -25,7 +27,7 @@ export class Expense {
   private _classificationMixed: string;
   private _businessCategory: string;
   private _businessSubCategory: string;
-  private _businessType: string;
+  private _businessType: BusinessType;
 
   constructor(
     id: string,
@@ -51,9 +53,9 @@ export class Expense {
     classificationMixed: string,
     businessCategory: string,
     businessSubCategory: string,
-    businessType: string
+    businessType: BusinessType
   ) {
-    this.id = id;
+    this._id = id;
     this.businessId = businessId;
     this.documentType = documentType;
     this.expenseStatus = expenseStatus;
@@ -80,195 +82,195 @@ export class Expense {
   }
 
   get id(): string {
-    return this.id;
+    return this._id;
   }
 
   set id(id: string) {
-    this.id = id;
+    this._id = id;
   }
 
   get businessId(): string {
-    return this.businessId;
+    return this._businessId;
   }
 
   set businessId(businessId: string) {
-    this.businessId = businessId;
+    this._businessId = businessId;
   }
 
   get documentType(): string {
-    return this.documentType;
+    return this._documentType;
   }
 
   set documentType(documentType: string) {
-    this.documentType = documentType;
+    this._documentType = documentType;
   }
 
   get expenseStatus(): string {
-    return this.expenseStatus;
+    return this._expenseStatus;
   }
 
   set expenseStatus(expenseStatus: string) {
-    this.expenseStatus = expenseStatus;
+    this._expenseStatus = expenseStatus;
   }
 
   get expenseDate(): string {
-    return this.expenseDate;
+    return this._expenseDate;
   }
 
   set expenseDate(expenseDate: string) {
-    this.expenseDate = expenseDate;
+    this._expenseDate = expenseDate;
   }
 
   get amountExcludeVat(): string {
-    return this.amountExcludeVat;
+    return this._amountExcludeVat;
   }
 
   set amountExcludeVat(amountExcludeVat: string) {
-    this.amountExcludeVat = amountExcludeVat;
+    this._amountExcludeVat = amountExcludeVat;
   }
 
   get vat(): string {
-    return this.vat;
+    return this._vat;
   }
 
   set vat(vat: string) {
-    this.vat = vat;
+    this._vat = vat;
   }
 
   get amount(): string {
-    return this.amount;
+    return this._amount;
   }
 
   set amount(amount: string) {
-    this.amount = amount;
+    this._amount = amount;
   }
 
   get expenseNumber(): string {
-    return this.expenseNumber;
+    return this._expenseNumber;
   }
 
   set expenseNumber(expenseNumber: string) {
-    this.expenseNumber = expenseNumber;
+    this._expenseNumber = expenseNumber;
   }
 
   get currency(): string {
-    return this.currency;
+    return this._currency;
   }
 
   set currency(currency: string) {
-    this.currency = currency;
+    this._currency = currency;
   }
 
   get currencyRate(): string {
-    return this.currencyRate;
+    return this._currencyRate;
   }
 
   set currencyRate(currencyRate: string) {
-    this.currencyRate = currencyRate;
+    this._currencyRate = currencyRate;
   }
 
   get paymentType(): string {
-    return this.paymentType;
+    return this._paymentType;
   }
 
   set paymentType(paymentType: string) {
-    this.paymentType = paymentType;
+    this._paymentType = paymentType;
   }
 
   get active(): string {
-    return this.active;
+    return this._active;
   }
 
   set active(active: string) {
-    this.active = active;
+    this._active = active;
   }
 
   get classificationType(): string {
-    return this.classificationType;
+    return this._classificationType;
   }
 
   set classificationType(classificationType: string) {
-    this.classificationType = classificationType;
+    this._classificationType = classificationType;
   }
 
   get classificationIrs(): string {
-    return this.classificationIrs;
+    return this._classificationIrs;
   }
 
   set classificationIrs(classificationIrs: string) {
-    this.classificationIrs = classificationIrs;
+    this._classificationIrs = classificationIrs;
   }
 
   get classificationTitle(): string {
-    return this.classificationTitle;
+    return this._classificationTitle;
   }
 
   set classificationTitle(classificationTitle: string) {
-    this.classificationTitle = classificationTitle;
+    this._classificationTitle = classificationTitle;
   }
 
   get classificationAccountingKey(): string {
-    return this.classificationAccountingKey;
+    return this._classificationAccountingKey;
   }
 
   set classificationAccountingKey(classificationAccountingKey: string) {
-    this.classificationAccountingKey = classificationAccountingKey;
+    this._classificationAccountingKey = classificationAccountingKey;
   }
 
   get classificationAccountingCode(): string {
-    return this.classificationAccountingCode;
+    return this._classificationAccountingCode;
   }
 
   set classificationAccountingCode(classificationAccountingCode: string) {
-    this.classificationAccountingCode = classificationAccountingCode;
+    this._classificationAccountingCode = classificationAccountingCode;
   }
 
   get classificationIncome(): string {
-    return this.classificationIncome;
+    return this._classificationIncome;
   }
 
   set classificationIncome(classificationIncome: string) {
-    this.classificationIncome = classificationIncome;
+    this._classificationIncome = classificationIncome;
   }
 
   get classificationVat(): string {
-    return this.classificationVat;
+    return this._classificationVat;
   }
 
   set classificationVat(classificationVat: string) {
-    this.classificationVat = classificationVat;
+    this._classificationVat = classificationVat;
   }
 
   get classificationMixed(): string {
-    return this.classificationMixed;
+    return this._classificationMixed;
   }
 
   set classificationMixed(classificationMixed: string) {
-    this.classificationMixed = classificationMixed;
+    this._classificationMixed = classificationMixed;
   }
 
   get businessSubCategory(): string {
-    return this.businessSubCategory;
+    return this._businessSubCategory;
   }
 
   set businessCategory(businessCategory: string) {
-    this.businessCategory = businessCategory;
+    this._businessCategory = businessCategory;
   }
 
   get businessCategory(): string {
-    return this.businessCategory;
+    return this._businessCategory;
   }
 
   set businessSubCategory(businessSubCategory: string) {
-    this.businessSubCategory = businessSubCategory;
+    this._businessSubCategory = businessSubCategory;
   }
 
-  get businessType(): string {
-    return this.businessType;
+  get businessType(): BusinessType {
+    return this._businessType;
   }
 
-  set businessType(businessType: string) {
-    this.businessType = businessType;
+  set businessType(businessType: BusinessType) {
+    this._businessType = businessType;
   }
 
   toJson() {
@@ -298,5 +300,35 @@ export class Expense {
       businessSubCategory: this.businessSubCategory,
       businessType: this.businessType
     };
+  }
+
+  toYaml() {
+    const yamlObject = {
+      id: this.id,
+      businessId: this.businessId,
+      documentType: this.documentType,
+      expenseStatus: this.expenseStatus,
+      expenseDate: this.expenseDate,
+      amountExcludeVat: this.amountExcludeVat,
+      vat: this.vat,
+      amount: this.amount,
+      expenseNumber: this.expenseNumber,
+      currency: this.currency,
+      currencyRate: this.currencyRate,
+      paymentType: this.paymentType,
+      active: this.active,
+      classificationType: this.classificationType,
+      classificationIrs: this.classificationIrs,
+      classificationTitle: this.classificationTitle,
+      classificationAccountingKey: this.classificationAccountingKey,
+      classificationAccountingCode: this.classificationAccountingCode,
+      classificationIncome: this.classificationIncome,
+      classificationVat: this.classificationVat,
+      classificationMixed: this.classificationMixed,
+      businessCategory: this.businessCategory,
+      businessSubCategory: this.businessSubCategory,
+      businessType: this.businessType
+    };
+    return yaml.dump(yamlObject);
   }
 }

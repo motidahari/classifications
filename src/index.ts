@@ -10,7 +10,9 @@ const apiGatewayHandler = serviceHandler.enableApiGatewayHandler();
 apiGatewayHandler.app.get('/', async (req, res) => {
   try {
     const data = await appContainer.expensesService.getExpenses();
-    res.send(data);
+    // console.log('data', data[0]);
+
+    res.send(data[0]);
   } catch (error) {
     console.log('error', error);
   }

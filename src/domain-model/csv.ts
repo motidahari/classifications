@@ -55,8 +55,8 @@ export class Csv {
             if (index === 0) {
               this.header = Object.keys(row);
             }
-            rows.push(row);
             this.processRow(row);
+            rows.push(row);
           })
           .on('end', () => resolve())
           .on('error', (error) => reject(error));
@@ -69,32 +69,36 @@ export class Csv {
 
   private processRow(row: any): void {
     this.records.push(row);
-    console.log('row', row);
-    // const expense = new Expense();
+    // console.log('row', row);
 
-    // const values = Object.values(row);
-    // const date: string = values[0] as string;
-    // const day: string = values[1] as string;
-    // const hour: string = values[2] as string;
-    // const classType: string = values[3] as string;
-    // const room: string = values[4] as string;
-    // const category: string = values[5] as string;
-    // const coach: string = values[6] as string;
-    // const user: string = values[7] as string;
-    // const name: string = values[8] as string;
-    // const age: string = values[9] as string;
-    // const phoneNumber: string = values[10] as string;
-    // const membership: string = values[11] as string;
-    // const endDate: string = values[12] as string;
-    // const numberOfPerforations: string = values[13] as string;
-    // const debt: string = values[14] as string;
-    // const injury: string = values[15] as string;
-    // const check: string = values[16] as string;
-    // const classBranch: string = values[17] as string;
-    // const userBranch: string = values[18] as string;
-    // const email: string = values[19] as string;
+    const expense = new Expense(
+      row['id'],
+      row['businessId'],
+      row['documentType'],
+      row['expenseStatus'],
+      row['expenseDate'],
+      row['amountExcludeVat'],
+      row['vat'],
+      row['amount'],
+      row['expenseNumber'],
+      row['currency'],
+      row['currencyRate'],
+      row['paymentType'],
+      row['active'],
+      row['classificationType'],
+      row['classificationIrs'],
+      row['classificationTitle'],
+      row['classificationAccountingKey'],
+      row['classificationAccountingCode'],
+      row['classificationIncome'],
+      row['classificationVat'],
+      row['classificationMixed'],
+      row['businessCategory'],
+      row['businessSubCategory'],
+      row['businessType']
+    );
 
-    // this.addExpenses(expense);
+    this.addExpenses(expense);
   }
 
   private addExpenses(expense: Expense) {

@@ -10,9 +10,6 @@ export class AppConfig {
     const appDir = dirname(require.main.filename).replace('/dist', '');
     this.dataPath = `${appDir}/data/expenses.csv`;
     this.outputPath = `${appDir}/output`;
-
-    console.log('dataPath', this.dataPath);
-    console.log('outputPath', this.outputPath);
   }
 }
 

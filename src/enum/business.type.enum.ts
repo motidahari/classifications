@@ -1,0 +1,8 @@
+export enum BusinessType {
+  LICENSED = 1,
+  LTD_COMPANY = 2,
+  EXEMPT = 3,
+  NON_PROFIT_ORGANIZATION = 4,
+  PUBLIC_BENEFIT_COMPANY = 5,
+  PARTNERSHIP = 6
+}
