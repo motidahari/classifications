@@ -1,6 +1,9 @@
+import dotenv from "dotenv";
 import { AppContainer } from './config/container';
 import { appConfig } from './config/config';
 import { ServiceHandler } from './core/service.handler';
+
+dotenv.config();
 
 const appContainer = new AppContainer(appConfig);
 const serviceHandler = new ServiceHandler();
@@ -26,3 +29,7 @@ apiGatewayHandler.app.get('/classifications', async (req, res) => {
     console.log('error', error);
   }
 });
+
+// prompt endpoint
+
+
