@@ -1,0 +1,7 @@
+export enum DocumentType {
+  INVOICE = 305,
+  INVOICE_RECEIPT = 320,
+  CREDIT_NOTE = 330,
+  RECEIPT = 400,
+  DONATION_RECEIPT = 405
+}

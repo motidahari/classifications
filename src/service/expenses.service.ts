@@ -11,7 +11,7 @@ export class ExpensesService {
 
   public async getExpenses() {
     await this.csv.processCSV();
-    console.log('this.csv.listExpenses', this.csv.listExpenses.length);
+    console.log('this.csv.listExpenses', this.csv.listExpenses[0]);
 
     return this.csv.listExpenses;
   }
