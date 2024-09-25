@@ -9,6 +9,8 @@ const apiGatewayHandler = serviceHandler.enableApiGatewayHandler();
 
 apiGatewayHandler.app.get('/', async (req, res) => {
   try {
+    console.log('here1');
+    
     const data = await appContainer.expensesService.getExpenses();
 
     res.send(data);
@@ -19,6 +21,7 @@ apiGatewayHandler.app.get('/', async (req, res) => {
 
 apiGatewayHandler.app.get('/classifications', async (req, res) => {
   try {
+    console.log('here');
     const data = await appContainer.classificationService.getClassifications();
 
     res.send(data);
@@ -28,6 +31,8 @@ apiGatewayHandler.app.get('/classifications', async (req, res) => {
 });
 
 apiGatewayHandler.app.get('/occupations', async (req, res) => {
+  console.log('here2');
+  
   try {
     const data = await appContainer.occupationService.getOccupations();
 
