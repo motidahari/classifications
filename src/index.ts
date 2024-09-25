@@ -26,3 +26,13 @@ apiGatewayHandler.app.get('/classifications', async (req, res) => {
     console.log('error', error);
   }
 });
+
+apiGatewayHandler.app.get('/occupations', async (req, res) => {
+  try {
+    const data = await appContainer.occupationService.getOccupations();
+
+    res.send(data);
+  } catch (error) {
+    console.log('error', error);
+  }
+});
