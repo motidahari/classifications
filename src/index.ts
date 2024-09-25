@@ -43,12 +43,24 @@ apiGatewayHandler.app.get('/occupations', async (req, res) => {
 });
 
 apiGatewayHandler.app.get('/prompt', async (req, res) => {
+  const taxId: string = req.query.taxId as string;
+
+  if (!taxId) {
+    return res.status(400).send('Missing taxId');
+  }
+
   try {
+    const corporateName = await appContainer.corporateService.getCompanyNameByTaxId(taxId);
+
+    if (!corporateName) {
+      return res.status(404).send('Issuer company not found');
+    }
+
     const businessDetails = {
       businessType: "LICENSED",
       businessName: "כן או לא פתרונות בעמ",
       occupation: "שירותים מקצועיים",
-      taxId: "517028367"
+      taxId: "517028357"
     };
 
     const expenseDetails = {
@@ -56,15 +68,15 @@ apiGatewayHandler.app.get('/prompt', async (req, res) => {
       vat: 17,
       totalAmount: 117,
       documentNumber: 111,
-      companyIssuer: "בזק החברה הישראלית לתקשורת בע\"מ",
-      companyIssuerTaxId: "520031931",
+      companyIssuer: corporateName,
+      companyIssuerTaxId: taxId,
       date: "2024-09-25",
       documentType: "Tax Invoice/Receipt"
     };
 
     const data = await appContainer.promptService.classifyExpense(businessDetails, expenseDetails);
 
-    res.send(data);
+    res.status(200).send(data);
   } catch (error) {
     console.log('error', error);
   }

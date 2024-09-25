@@ -56,13 +56,17 @@ export class PromptService {
 
     const completion = await this.openai.chat.completions.create({
       messages: [{"role": "system", "content": this.instructions},
+        {"role": "user", "content": `{"businessDetails":{"businessType":"LICENSED","businessName":"כן או לא פתרונות בעמ","occupation":"שירותים מקצועיים","taxId":"517028367"},"expenseDetails":{"amount":100,"vat":17,"totalAmount":117,"documentNumber":111,"companyIssuer":"פז חברת נפט בעמ","companyIssuerTaxId":"510216054","date":"2024-09-25","documentType":"Tax Invoice/Receipt"}}`},
+        {"role": "assistant", "content": `[{"accountKey":"3567","categoryCode":3567,"type":"הוצאות דלק (לפני החזרים)"}]`},
+        {"role": "user", "content": `{"businessDetails":{"businessType":"LICENSED","businessName":"כן או לא פתרונות בעמ","occupation":"שירותים מקצועיים","taxId":"517028367"},"expenseDetails":{"amount":100,"vat":17,"totalAmount":117,"documentNumber":111,"companyIssuer":"פרטנר תקשורת בע\\"מ","companyIssuerTaxId":"520044314","date":"2024-09-25","documentType":"Tax Invoice/Receipt"}}`},
+        {"role": "assistant", "content": `[{"accountKey":"7680","categoryCode":7680,"type":"הוצאות תקשורת ואינטרנט"},{"accountKey":"6150","categoryCode":6150,"type":"הוצאות תקשורת טלפונית"},{"accountKey":"3650","categoryCode":3650,"type":"הוצאות דואר ותקשורת"}]`},
         {"role": "user", "content": `${JSON.stringify(userPrompt)}`}],
       model: "gpt-4o-mini",
     });
 
     const choice = completion.choices[0];
 
-    console.log('[Prompt Result]', choice);
+    console.log('[Prompt Result]', `${JSON.stringify(userPrompt)}`);
     return JSON.parse(choice.message.content);
   }
 }
