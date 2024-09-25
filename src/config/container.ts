@@ -13,7 +13,7 @@ export class AppContainer {
 
   constructor(config: AppConfig) {
     this.config = config;
-    this.csv = new Csv(config.path);
+    this.csv = new Csv(config.dataPath);
     this.expensesService = new ExpensesService(this.csv);
   }
 }
