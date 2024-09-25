@@ -1,5 +1,4 @@
 import { number } from 'joi';
-import { ClientAttendance } from './client.attendance';
 import { TimeUtil } from '../core/time.util';
 
 export class Expense {

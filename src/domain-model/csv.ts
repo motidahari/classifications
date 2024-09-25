@@ -1,7 +1,5 @@
 import * as fs from 'fs';
 import csv from 'csv-parser';
-import { ClientAttendance } from './client.attendance';
-import { Client } from './client';
 import { Expense } from './expense';
 
 export class Csv {
