@@ -25,8 +25,8 @@ export class ServiceHandler {
   };
 
   private async listen(app: Express) {
-    return app.listen(this.config.port, async () => {
-      return console.log(`Express listening at http://localhost:${this.config.port}`);
+    return app.listen(this.config.port, this.config.host, async () => {
+      return console.log(`Express listening at http://${this.config.host}:${this.config.port}`);
     });
   }
 }

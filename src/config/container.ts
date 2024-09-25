@@ -5,6 +5,7 @@ import cors from 'cors';
 import { ExpensesService } from '../service/expenses.service';
 import { ClassificationService } from '../service/classification.service';
 import { OccupationService } from '../service/occupation.service';
+import { PromptService } from '../service/prompt.service';
 
 const app = express();
 
@@ -14,6 +15,7 @@ export class AppContainer {
   readonly expensesService: ExpensesService;
   readonly classificationService: ClassificationService;
   readonly occupationService: OccupationService;
+  readonly promptService: PromptService;
 
   constructor(config: AppConfig) {
     this.config = config;
@@ -21,5 +23,6 @@ export class AppContainer {
     this.expensesService = new ExpensesService(this.csv);
     this.classificationService = new ClassificationService();
     this.occupationService = new OccupationService();
+    this.promptService = new PromptService(this.config.openAiKey);
   }
 }
